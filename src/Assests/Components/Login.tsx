@@ -11,7 +11,7 @@ const Login = () => {
     const { user_data } = useSelector((state: any) => state.user);
 
     useEffect(() => {
-        // dispatch(getUser())
+        dispatch(getUser())
     }, [])
 
     const onFinish = (values: { username: string, password: string }) => {
