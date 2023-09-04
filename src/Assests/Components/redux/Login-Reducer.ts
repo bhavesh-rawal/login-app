@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getAll } from './Action';
+import { create, getAll } from './Action';
 
 
 interface User {
@@ -8,6 +8,23 @@ interface User {
   error: null;
   searchData: User[];
 }
+
+
+//create action
+export const createUser = createAsyncThunk(
+  "createUser",
+  async (data: any, { rejectWithValue }) => {
+    // console.log("data", data);
+    const response = await create('users', data);
+    try {
+      const result = await response.data;
+      return result;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 
 // Read action
 export const getUser = createAsyncThunk(
@@ -41,6 +58,19 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(createUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(createUser.fulfilled, (state, action) => {
+        state.error = null;
+        state.loading = false;
+        state.user_data = action.payload;
+      })
+      .addCase(createUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
       .addCase(getUser.pending, (state) => {
         state.loading = true;
         state.error = null;
