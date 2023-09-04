@@ -5,22 +5,21 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { getUser } from "./redux/Login-Reducer";
 import { toast } from 'react-toastify';
-
 const Login = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-
+    const dispatch = useDispatch<any>();
     const { user_data } = useSelector((state: any) => state.user);
+
     useEffect(() => {
-        dispatch(getUser() as any)
+        // dispatch(getUser())
     }, [])
 
-    const onFinish = (values: any) => {
-
+    const onFinish = (values: { username: string, password: string }) => {
         const log = user_data.users.find((i: any) => i.username === values.username);
         if (log) {
             if (log.password === values.password) {
                 toast("Login")
+                localStorage.setItem("Login", JSON.stringify(log))
                 navigate("/home");
             } else {
                 toast("Incorrect Password...")
@@ -29,7 +28,6 @@ const Login = () => {
             toast("Invalid User...")
         }
     };
-
     return (
         <Fragment>
             <Row

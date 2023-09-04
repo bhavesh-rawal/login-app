@@ -5,14 +5,14 @@ import { getAll } from './Action';
 interface User {
   user_data: User[];
   loading: boolean;
-  error: any;
+  error: null;
   searchData: User[];
 }
 
 // Read action
-export const getUser = createAsyncThunk<User[], void, { rejectValue: any }>(
+export const getUser = createAsyncThunk(
   "getUser",
-  async (_, { rejectWithValue }: any) => {
+  async (_, { rejectWithValue }) => {
     try {
       const response = await getAll('users');
       return response.data;

@@ -15,7 +15,11 @@ function App() {
         <ToastContainer position="top-center" />
         <Provider store={Store}>
           <Routes>
-            <Route path='/' element={<Login />} />
+
+            <Route
+              path="/"
+              element={localStorage.getItem('Login') ? <Home /> : <Login />}
+            />
             <Route path='/home' element={<Home />} />
           </Routes>
         </Provider>
