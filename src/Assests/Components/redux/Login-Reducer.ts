@@ -15,10 +15,11 @@ export const createUser = createAsyncThunk(
   "createUser",
   async (data: any, { rejectWithValue }) => {
     // console.log("data", data);
-    const response = await create('users', data);
+    const response = await create('users', data)
     try {
-      const result = await response.data;
-      return result;
+      console.log(response);
+
+      return response.data;
     } catch (error) {
       return rejectWithValue(error);
     }

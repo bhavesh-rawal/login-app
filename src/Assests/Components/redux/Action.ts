@@ -6,7 +6,5 @@ export const getAll = (ky: string) => {
 };
 
 export const create = (ky: string, data: any) => {
-  console.log(data);
-
-  return http.post(ky, data);
+  return http.post(ky, data)
 };

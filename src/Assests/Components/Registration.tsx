@@ -6,6 +6,7 @@ import {
 } from 'antd';
 import { useDispatch } from 'react-redux';
 import { createUser } from './redux/Login-Reducer';
+import { toast } from 'react-toastify';
 
 const Registration: React.FC = () => {
     const [form] = Form.useForm();
@@ -13,6 +14,7 @@ const Registration: React.FC = () => {
     const onFinish = (values: void) => {
         dispatch(createUser(values))
         // form.resetFields()
+        toast.success("Added")
     };
 
     return (
