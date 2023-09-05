@@ -17,12 +17,14 @@ const Home = () => {
     }, []);
     const logOut = () => {
         localStorage.removeItem('Login')
+        toast.success("Log-Out")
         navigate('/');
     }
     return (<>
         <div style={{ fontSize: '10rem' }}>
             Hello Home
         </div>
+        <button type="button" className='btn btn-primary' onClick={logOut}>Log Out</button>
     </>
 
     )

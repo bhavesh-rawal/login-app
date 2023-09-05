@@ -7,19 +7,15 @@ import { getUser } from "./redux/Login-Reducer";
 import { toast } from 'react-toastify';
 const Login = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch<any>();
+    // const dispatch = useDispatch<any>();
     const { user_data } = useSelector((state: any) => state.user);
-    console.log(user_data.data);
-
-    useEffect(() => {
-        dispatch(getUser())
-    }, [])
+    console.log(user_data);
 
     const onFinish = (values: { username: string, password: string }) => {
-        const log = user_data.data.find((i: any) => i.email === values.username);
+        const log = user_data.find((i: any) => i.email === values.username);
         if (log) {
-            if (log.id == values.password) {
-                toast("Login")
+            if (log.password == values.password) {
+                toast.success("Login")
                 localStorage.setItem("Login", JSON.stringify(log))
                 navigate("/home");
             } else {

@@ -13,8 +13,8 @@ const Registration: React.FC = () => {
     const dispatch = useDispatch<any>()
     const onFinish = (values: void) => {
         dispatch(createUser(values))
-        // form.resetFields()
         toast.success("Added")
+        form.resetFields()
     };
 
     return (
