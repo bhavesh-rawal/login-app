@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { create, getAll } from './Action';
+import { create, getAll, update } from './Action';
 
 
 interface User {
@@ -17,8 +17,6 @@ export const createUser = createAsyncThunk(
     // console.log("data", data);
     const response = await create('users', data)
     try {
-      console.log(response);
-
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -40,6 +38,25 @@ export const getUser = createAsyncThunk(
     }
   }
 );
+
+
+//update action
+export const updateUser = createAsyncThunk(
+  "updateUser",
+  async (data: any, { rejectWithValue }) => {
+    try {
+      const response = await update(data.id, 'users', data);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+
+
+
 
 interface UserState {
   user_data: User[];
@@ -84,7 +101,24 @@ const userSlice = createSlice({
       .addCase(getUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(updateUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        // state.user_data = action.payload;
+        state.user_data = state.user_data.map((i: any) =>
+          i.id === action.payload.id ? action.payload : i
+        );
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
+
   },
 });
 
