@@ -6,8 +6,6 @@ import Account from './Account';
 import Top_Navbar from '../Components/Navbar/Top_Navbar';
 
 const Home = () => {
-    
-
     return (<>
         <Top_Navbar Navs={[{ titls: "Dashboard", nav: "/home" }, { titls: "Account", nav: "account" }]} />
         <Container>
