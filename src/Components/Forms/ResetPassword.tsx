@@ -6,20 +6,25 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { updateUser } from '../../Redux/Login-Reducer';
+import Swal from 'sweetalert2';
 
 const ResetPassword = () => {
     const [form] = Form.useForm();
     const dispatch = useDispatch<any>()
     const { user_data } = useSelector((state: any) => state.user);
-    console.log(user_data);
 
-    const onFinish = (values: { password: string, Oldpassword: string }) => {
+    const onFinish = (values: { password: string, confirm_password: string, Oldpassword: string }) => {
         const log = user_data.find((i: any) => i.password === values.Oldpassword);
-        if (log) {
+        if (log && (values.password === values.confirm_password) ) {
             const obj = { ...log, password: values.password }
             dispatch(updateUser(obj))
             localStorage.setItem("Login", JSON.stringify(obj))
-
+            Swal.fire({
+                icon: "success",
+                title: "Changed Password",
+                text: `Your Password Changed`,
+            });
+            form.resetFields()
         }
         else {
             toast.warning("Incorect Old Password")

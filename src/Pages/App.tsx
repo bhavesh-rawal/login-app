@@ -31,7 +31,7 @@ function App() {
             element={localStorage.getItem('Login') ? <Home /> : <Login data={user_data} navigt="home" />}
           />
           <Route path='/home/*' element={<Home />} />
-          <Route path='/forgetpassword' element={<Forget_Password />} />
+        <Route path='/forgetpassword' element={<Forget_Password data={user_data} />} />
           <Route path='/registration' element={<Registration />} />
         </Routes>
     </>

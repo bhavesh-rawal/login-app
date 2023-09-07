@@ -1,21 +1,17 @@
 import React, { Fragment } from 'react'
 import { Form, Row, Col, Card } from "antd";
-import { Inputs_Mail, Inputs_Password } from "../Forms-Items/Inputs";
+import { Inputs_Mail } from "../Forms-Items/Inputs";
 import { Button_Bootstrap } from "../Forms-Items/Buttons";
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
-const Forget_Password = () => {
+const Forget_Password = (props:any) => {
     const [form] = Form.useForm();
     const navigate = useNavigate();
 
-    const { user_data } = useSelector((state: any) => state.user);
-    console.log(user_data);
-    
     const onFinish = (values: { email: string }) => {
-        const log = user_data.find((i: any) => i.email === values.email);
+        const log = props.data.find((i: any) => i.email === values.email);
         if (log) {
             Swal.fire({
                 icon: "success",

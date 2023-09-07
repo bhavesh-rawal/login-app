@@ -1,6 +1,6 @@
-import {  Row, Col, Card } from "antd"
+import {  Row, Card } from "antd"
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Container } from "react-bootstrap";
 
 const { Meta } = Card;
@@ -17,7 +17,7 @@ const Profile_Card = (props:any) => {
                 <Row
                     style={{ justifyContent: "center" }}
                 >
-                    <Col >
+                   
                         <Card
                             hoverable
                             title="Profile View"
@@ -26,6 +26,7 @@ const Profile_Card = (props:any) => {
 
                             cover={
                                 <img
+                                    style={{  height: '15rem', width: '15rem' }}
                                     alt="Profile Image"
                                     src="https://www.authorityhunter.com/wp-content/uploads/2022/05/Remove-Facebook-Profile-step6.jpg"
                                 />
@@ -39,7 +40,7 @@ const Profile_Card = (props:any) => {
                                 description={`Email: ${props.data.email}`}
                             />
                         </Card>
-                    </Col>
+                   
                 </Row>
             </Container>
         </>
