@@ -27,7 +27,7 @@ function App() {
       <ToastContainer position="top-center" />
         <Routes>
           <Route
-            path="/"
+            path="*"
             element={localStorage.getItem('Login') ? <Home /> : <Login data={user_data} navigt="home" />}
           />
           <Route path='/home/*' element={<Home />} />

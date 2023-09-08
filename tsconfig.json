@@ -21,11 +21,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src", // Include your source files directory
-    "path/to/directory/containing/images.d.ts" // Include the directory with the type declaration file
-  ],
-  // "include": [
-  //   "src"
-  // ]
-  
+    "src",
+    "path/to/directory/containing/images.d.ts" 
+  ]
 }

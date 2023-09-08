@@ -13,8 +13,8 @@ const ResetPassword = () => {
     const dispatch = useDispatch<any>()
     const { user_data } = useSelector((state: any) => state.user);
 
-    const onFinish = (values: { password: string, confirm_password: string, Oldpassword: string }) => {
-        const log = user_data.find((i: any) => i.password === values.Oldpassword);
+    const onFinish = (values: { password: string, confirm_password: string, Currentpassword: string }) => {
+        const log = user_data.find((i: any) => i.password === values.Currentpassword);
         if (log && (values.password === values.confirm_password) ) {
             const obj = { ...log, password: values.password }
             dispatch(updateUser(obj))
@@ -27,7 +27,7 @@ const ResetPassword = () => {
             form.resetFields()
         }
         else {
-            toast.warning("Incorect Old Password")
+            toast.warning("Incorect Current Password")
         }
     }
     return (
@@ -49,7 +49,7 @@ const ResetPassword = () => {
                             initialValues={{ remember: true }}
                             onFinish={onFinish}
                             style={{ width: "100%", textAlign: "center" }} >
-                            <Inputs_Password holder="Old Password" nam="Oldpassword" typs="password" />
+                            <Inputs_Password holder="Current Password" nam="Currentpassword" typs="password" />
                             <Inputs_Password holder="New Password" nam="password" typs="password" />
                             <Inputs_Confirm_Password holder="Password" nam="confirm_password" />
                             <Form.Item >

@@ -14,7 +14,6 @@ interface User {
 export const createUser = createAsyncThunk(
   "createUser",
   async (data: any, { rejectWithValue }) => {
-    // console.log("data", data);
     const response = await create('users', data)
     try {
       return response.data;

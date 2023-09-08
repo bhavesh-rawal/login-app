@@ -27,9 +27,9 @@ const Top_Navbar = (props: any) => {
                         ></Nav>
                         <Nav className="me-auto ">
                             {
-                                props.Navs.map((i: any) => (
+                                props.Navs.map((i: any,indx:number) => (
                                     <>
-                                        <Link className='text-dark text-decoration-none mx-2' to={i.nav}>{i.titls}</Link>
+                                        <Link className='text-dark text-decoration-none mx-2' to={i.nav} key={indx}>{i.titls}</Link>
                                     </>
                                 ))
                             }
